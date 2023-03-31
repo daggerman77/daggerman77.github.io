@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+   <head>
     <title>Zack</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,346 +8,264 @@
     <script src="./js/output.js" defer></script>
     <script src="./Scripts/components.js"></script>
   </head>
+    <body class="bg-slate-800">
+        <nav x-data="zacksNavbar()" class="block h-20 px-4 font-mono lg:hidden">
+            <div class="flex h-full w-full items-center justify-between">
+                <span class="text-xl text-teal-400">./zack</span>
+                <button class="text-slate-300" @click="open = !open">
+                    <svg
+                        x-show="!open"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="h-8 w-8"
+                    >
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
 
-  <body class="bg-slate-800">
-    <nav x-data="zacksNavbar()" class="block h-20 px-4 font-mono lg:hidden">
-      <div class="flex h-full w-full items-center justify-between">
-        <span class="text-lg text-teal-400">./zack</span>
-        <button class="text-slate-300" @click="open = !open">
-          <svg
-            x-show="!open"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="h-8 w-8"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-          <svg
-            x-show="open"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="h-8 w-8"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-      </div>
-      <ul
-        x-show="open"
-        @click.away="open = false"
-        class="absolute left-0 right-0 bg-slate-800"
-      >
-        <template x-for="e in entries">
-          <li class="block w-full">
-            <a
-              class="block w-full p-4 text-slate-300 hover:bg-slate-900 hover:text-slate-200 active:text-slate-400"
-              :href="e.link"
-              ><span class="text-teal-400" x-html="e.prefix"></span
-              ><span x-html="e.label"></span
-            ></a>
-          </li>
-        </template>
-      </ul>
-    </nav>
+                    <svg x-show="open" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 18L18 6M6 6L18 18" stroke="#CBD5E1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <rect x="0.5" y="0.5" width="23" height="23" stroke="#CBD5E1" />
+                    </svg>
+                </button>
+            </div>
+            <ul x-show="open" @click.away="open = false" class="absolute left-0 right-0 flex flex-col bg-slate-800">
+                <template x-for="e in entries">
+                    <li class="block w-full">
+                        <a
+                            class="group block w-full p-4 text-slate-300 active:bg-slate-900 active:text-slate-200"
+                            :href="e.link"
+                            @click="open = !open"
+                            ><span class="text-teal-400 group-active:text-teal-300" x-html="e.prefix"></span><span x-html="e.label"></span
+                        ></a>
+                    </li>
+                </template>
+            </ul>
+        </nav>
 
-    <nav
-      class="hidden h-20 items-center justify-between bg-slate-800 px-10 font-mono lg:flex"
-    >
-      <span class="text-lg text-teal-400">./zack</span>
-      <ul x-data="zacksNavbar" class="flex space-x-8 text-sm">
-        <template x-for="e in entries">
-          <li>
-            <a
-              class="text-slate-300 hover:text-slate-200 active:text-slate-400"
-              :href="e.link"
-              ><span class="text-teal-400" x-html="e.prefix"></span
-              ><span x-html="e.label"></span
-            ></a>
-          </li>
-        </template>
-      </ul>
-    </nav>
-    <div
-      id="home"
-      class="p-4 text-center font-mono text-white md:p-8 md:text-left"
-    >
-      <div
-        class="flex w-full flex-col-reverse items-center md:flex-row md:items-start"
-      >
-        <div class="w-full py-16 px-4 md:w-1/2">
-          <div class="items-center text-teal-400">Hey, my name is</div>
-          <div class="my-5 font-serif text-3xl md:text-6xl">
-            Zackary Edstrom
-          </div>
-          <div class="my-5 font-mono text-lg font-normal text-slate-300">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta
-            aspernatur porro, pariatur repellendus expedita deleniti
-            consequuntur beatae omnis nemo. Tempore eveniet earum exercitationem
-            repudiandae, ea itaque accusantium veniam eum distinctio.
-          </div>
+        <nav class="hidden h-20 items-center justify-between bg-slate-800 px-10 font-mono lg:flex">
+            <span class="text-xl text-teal-400 md:text-2xl">./zack</span>
+            <ul x-data="zacksNavbar" class="flex gap-8 text-sm">
+                <template x-for="e in entries">
+                    <li class="bg-slate-800">
+                        <a
+                            class="group text-slate-300 outline-none hover:text-slate-200 focus:border-b-2 focus:border-teal-500 active:text-slate-400"
+                            :href="e.link"
+                            ><span class="text-teal-400 group-hover:text-teal-300 group-active:text-teal-500" x-html="e.prefix"></span
+                            ><span x-html="e.label"></span
+                        ></a>
+                    </li>
+                </template>
+            </ul>
+        </nav>
 
-          <div class="my-6 md:min-w-fit">
-            <a
-              href="Downloads\EdstromZ resume 1.24.23.doc"
-              class="md:w-m mt-10 box-border inline-flex w-full justify-center gap-4 rounded border-2 border-teal-400 p-4 px-8 pt-4 text-base text-teal-400 md:h-min md:w-min"
-            >
-              <span class="h-5 min-w-max flex-nowrap text-sm"
-                >Download my resume</span
-              >
+        <div
+            id="home"
+            class="flex w-full flex-col items-center justify-center py-5 px-4 text-center font-mono text-white md:flex-row-reverse md:items-start md:p-8 md:px-8 md:text-left"
+        >
+            <div class="flex w-fit justify-center md:w-full md:justify-end lg:flex-row">
+                <img src="Images\Full body 2.png" alt="..." />
+            </div>
+            <div class="w-full items-center justify-center space-y-5 py-10">
+                <h2 class="items-center space-y-2 text-base text-teal-400">Hey, my name is</h2>
+                <h1 class="space-y-2 font-serif text-4xl md:text-6xl">Zackary Edstrom</h1>
+                <p class="pb-5 font-mono text-xl font-normal text-slate-300">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta aspernatur porro, pariatur repellendus expedita deleniti
+                    consequuntur beatae omnis nemo. Tempore eveniet earum exercitationem repudiandae, ea itaque accusantium veniam eum distinctio.
+                </p>
 
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1 14.5V16.75C1 17.3467 1.23705 17.919 1.65901 18.341C2.08097 18.7629 2.65326 19 3.25 19H16.75C17.3467 19 17.919 18.7629 18.341 18.341C18.7629 17.919 19 17.3467 19 16.75V14.5M14.5 10L10 14.5M10 14.5L5.5 10M10 14.5V1"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </a>
-          </div>
-
-          <button class="mt-10 inline-flex">
-            <div class="h-fit rounded-full border-2 border-slate-400">
-              <div class="relative left-1 m-6 h-min">
-                <svg
-                  width="21"
-                  height="22"
-                  viewBox="0 0 21 22"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+                <a
+                    href="Downloads\EdstromZ resume 1.24.23.doc"
+                    class="flex w-full flex-row items-center justify-center gap-3 rounded border border-solid border-teal-400 py-4 px-8 text-sm text-teal-400 outline-none hover:border-teal-300 hover:text-teal-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-800 active:border-teal-500 active:text-teal-500 md:w-fit"
                 >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M0 2.53731C0 0.635975 2.03867 -0.569358 3.70533 0.346642L19.092 8.81064C20.8187 9.75997 20.8187 12.2413 19.092 13.1906L3.70667 21.6546C2.04 22.5706 0.00133324 21.3653 0.00133324 19.464V2.53731H0Z"
-                    fill="#94A3B8"
-                  />
-                </svg>
-              </div>
+                    <span>Download my resume</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M1 14.5V16.75C1 17.3467 1.23705 17.919 1.65901 18.341C2.08097 18.7629 2.65326 19 3.25 19H16.75C17.3467 19 17.919 18.7629 18.341 18.341C18.7629 17.919 19 17.3467 19 16.75V14.5M14.5 10L10 14.5M10 14.5L5.5 10M10 14.5V1"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </a>
+
+                <div class="inline-flex items-center gap-5 py-5 text-center font-mono text-sm">
+                    <a
+                        a
+                        href="https://www.youtube.com/"
+                        class="flex h-20 w-20 flex-col items-center justify-center rounded-full border border-slate-400 text-slate-400 outline-none hover:border-teal-300 hover:text-teal-300 focus:border-2 focus:border-teal-400 focus:text-teal-400 focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-slate-800 active:border-teal-500 active:text-teal-500"
+                    >
+                        <div class="flex flex-row items-center justify-center">
+                            <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M0 2.53731C0 0.635975 2.03867 -0.569358 3.70533 0.346642L19.092 8.81064C20.8187 9.75997 20.8187 12.2413 19.092 13.1906L3.70667 21.6546C2.04 22.5706 0.00133324 21.3653 0.00133324 19.464V2.53731H0Z"
+                                    fill="currentColor"
+                                    stroke="currentColor"
+                                />
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/" class="text-slate-400 hover:text-slate-300 active:text-slate-500">Watch video</a>
+                </div>
             </div>
-            <div class="ml-3 max-w-fit py-7 text-slate-400">Watch video</div>
-          </button>
         </div>
 
-        <div
-          class="flex w-full max-w-[20rem] justify-center md:w-1/2 md:max-w-none md:justify-end lg:flex-row"
-        >
-          <img src="Images\Full body 1.png" alt="..." />
-        </div>
-      </div>
-    </div>
-    <div id="about" class="space-y-4 p-4 text-slate-100 md:p-8">
-      <h2 class="flex flex-row items-center gap-4 py-4">
-        <span
-          class="order-0 flex items-center text-center font-mono text-xl text-teal-400"
-          >02</span
-        >
-        <span
-          class="order-1 flex items-center text-center font-mono text-xl text-slate-100"
-          >About</span
-        >
-        <span
-          class="flex-grow-1 order-2 flex w-full border border-dashed border-teal-500"
-        ></span>
-      </h2>
-      <div
-        class="flex flex-col-reverse lg:flex-row lg:justify-between lg:pt-10"
-      >
-        <div
-          class="flex w-full flex-col gap-6 font-mono text-lg font-normal text-slate-300"
-        >
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam
-            commodi asperiores tempora labore nostrum adipisci! Iure itaque
-            temporibus reiciendis esse officiis illum alias veritatis ex at
-            dignissimos quis, nulla perspiciatis?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-            adipisci quos explicabo eius aliquid in exercitationem nesciunt
-            commodi eveniet error ea repellat, accusantium iusto vel debitis!
-            Doloremque repellendus nemo temporibus.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
-            nisi nostrum expedita esse earum nulla fuga autem ea aliquam iste
-            necessitatibus doloremque distinctio totam laborum ab, impedit sunt
-            accusantium? Quae!
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Voluptatem, eos sit deserunt explicabo velit aliquam minus
-            asperiores? In natus corrupti necessitatibus cumque! Unde officia
-            pariatur ipsa soluta deleniti qui numquam.
-          </p>
-        </div>
-        <div
-          class="flex h-full w-full justify-center py-12 lg:flex-row-reverse lg:justify-start"
-        >
-          <div
-            class="relative left-1 h-[20rem] w-[18rem] bg-teal-400 md:h-[25rem] md:w-[22.5rem] lg:h-[25rem] lg:w-[22.5rem]"
-          >
-            <div
-              class="relative right-1 bottom-4 h-[20rem] w-[17.25rem] bg-slate-500 md:right-4 md:h-[25rem] md:w-[22.5rem] lg:h-[25rem] lg:w-[22.5rem]"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </div>
+        <div id="about" class="items-center justify-center space-y-4 px-4 py-8 font-mono text-xl text-slate-100 md:space-y-8 md:p-8">
+            <h2 class="flex flex-row items-center gap-4 py-4">
+                <span class="text-teal-400">02</span>
+                <span>About</span>
+                <span class="flex flex-grow border border-dashed border-teal-500"></span>
+            </h2>
+            <div class="flex flex-col-reverse lg:flex-row lg:justify-between">
+                <div class="flex w-fit flex-col gap-6 text-lg text-slate-300">
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam commodi asperiores tempora labore nostrum adipisci! Iure
+                        itaque temporibus reiciendis esse officiis illum alias veritatis ex at dignissimos quis, nulla perspiciatis?
+                    </p>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur adipisci quos explicabo eius aliquid in exercitationem
+                        nesciunt commodi eveniet error ea repellat, accusantium iusto vel debitis! Doloremque repellendus nemo temporibus.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores nisi nostrum expedita esse earum nulla fuga autem ea aliquam
+                        iste necessitatibus doloremque distinctio totam laborum ab, impedit sunt accusantium? Quae!
+                    </p>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, eos sit deserunt explicabo velit aliquam minus
+                        asperiores? In natus corrupti necessitatibus cumque! Unde officia pariatur ipsa soluta deleniti qui numquam.
+                    </p>
+                </div>
 
-    <div
-      id="skills"
-      class="flex flex-col gap-8 px-4 text-slate-300 lg:px-8"
-      x-data="$skills"
-      x-init="load()"
-    >
-      <h2 class="flex flex-row items-center gap-4 py-4">
-        <span
-          class="order-0 flex items-center text-center font-mono text-xl text-teal-400"
-          >03</span
-        >
-        <span
-          class="order-1 flex items-center text-center font-mono text-xl text-slate-100"
-        >
-          Skills</span
-        >
-        <span
-          class="flex-grow-1 order-2 flex w-full border border-dashed border-teal-500"
-        ></span>
-      </h2>
-      <p class="hidden md:block">
-        These cards display the number of hours spent programming in the
-        specified languages in real time! The data is pulled from the wakatime
-        extension.
-      </p>
-      <div
-        class="flex flex-col flex-wrap items-center justify-center gap-4 pb-20 md:flex-row"
-      >
-        <template x-for="language in languages">
-          <div
-            class="flex h-[25rem] w-[20rem] flex-col justify-between rounded border border-teal-800 bg-slate-900 px-4 py-8 shadow-lg shadow-teal-800"
-          >
-            <div class="flex flex-col gap-4">
-              <img
-                :src="language.image"
-                alt="[language.name] Logo"
-                class="h-12 w-12"
-              />
-              <h3 class="text2xl text-slate-100" x-text="language.name"></h3>
-              <p class="text-sm" x-text="language.description">Description</p>
+                <div class="flex h-full w-full justify-center py-12 lg:flex-row lg:justify-end">
+                    <div class="relative left-1 h-[20rem] w-[18rem] bg-teal-400 md:h-[25rem] md:w-[22.5rem] lg:h-[25rem] lg:w-[22.5rem]">
+                        <div
+                            class="relative right-1 bottom-4 h-[20rem] w-[17.25rem] bg-slate-500 md:right-4 md:h-[25rem] md:w-[22.5rem] lg:h-[25rem] lg:w-[22.5rem]"
+                        ></div>
+                    </div>
+                </div>
             </div>
-            <div class="flex flex-col gap-4 pt-8">
-              <div class="h-8 bg-slate-700">
-                <div
-                  class="h-8 bg-teal-700"
-                  :style="`width:${progress(language)}`"
-                ></div>
-              </div>
+        </div>
+
+        <div id="skills" class="flex flex-col gap-8 px-4 py-8 font-mono text-xl text-slate-300 lg:p-8" x-data="$skills" x-init="load()">
+            <h2 class="flex flex-row items-center gap-4 py-4">
+                <span class="text-teal-400">03</span>
+                <span class="text-slate-100"> Skills</span>
+                <span class="flex flex-grow border border-dashed border-teal-500"></span>
+            </h2>
+            <p class="hidden md:block">
+                These cards display the number of hours spent programming in the specified languages in real time! The data is pulled from the
+                wakatime extension.
+            </p>
+            <div class="flex flex-col flex-wrap items-center justify-center gap-8 md:flex-row md:justify-start">
+                <template x-for="language in languages">
+                    <div
+                        class="flex h-[25rem] w-[20rem] flex-col justify-between space-y-2 rounded border border-teal-800 bg-slate-900 px-4 py-8 shadow-lg shadow-teal-600"
+                    >
+                        <div class="flex flex-col gap-4">
+                            <img :src="language.image" alt="[language.name] Logo" class="h-12 w-12" />
+                            <h3 class="text-2xl text-slate-100" x-text="language.name"></h3>
+                            <p class="text-sm" x-text="language.description">Description</p>
+                        </div>
+                        <div class="flex flex-col gap-4 pt-8">
+                            <div class="bg-slate-700">
+                                <div class="h-8 bg-teal-700" :style="`width:${progress(language)}`"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-row items-center gap-1">
+                            <span class="text-4xl" x-text="language.hours">40h</span> <span class="text-lg text-slate-500">/1000</span>
+                        </div>
+                    </div>
+                </template>
             </div>
-            <div class="flex flex-row items-center">
-              <span class="text-4xl" x-text="language.hours">40h</span>
-              <span class="text-slate-500">/1000</span>
+        </div>
+        <div id="experience" class="flex flex-col justify-start gap-8 px-4 pt-8 pb-16 font-mono text-xl text-slate-100 md:p-8 md:pb-16">
+            <h2 class="flex flex-row items-center gap-4 py-4">
+                <span class="text-teal-400">04</span>
+                <span> Experience</span>
+                <span class="flex-grow border border-dashed border-teal-500"></span>
+            </h2>
+            <div class="">
+                <template x-data="experience()" x-for="j in jobs">
+                    <div class="flex flex-row gap-8">
+                        <div class="flex flex-col items-center">
+                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="4" y="12.3333" width="11.7851" height="11.7851" transform="rotate(-45 4 12.3333)" fill="#8892C0" />
+                                <rect
+                                    x="1.41421"
+                                    y="12.5"
+                                    width="15.6777"
+                                    height="15.6777"
+                                    transform="rotate(-45 1.41421 12.5)"
+                                    stroke="#64FFDA"
+                                    stroke-width="2"
+                                />
+                            </svg>
+                            <div class="box-border h-full w-[0.0625rem] border-[0.0625rem] border-l border-dashed border-teal-500"></div>
+                        </div>
+                        <div class="flex flex-col gap-4 pb-8 md:gap-[1.125rem]">
+                            <div class="flex flex-col gap-1">
+                                <h3 class="text-lg text-slate-200" x-text="j.title">Acme - Front-End Developer</h3>
+                                <p class="text-sm text-slate-400" x-text="j.date">07/2010 - 02/2018</p>
+                            </div>
+                            <div class="flex flex-col gap-2 font-mono text-base text-slate-300">
+                                <p x-text="j.description">
+                                    Communicate and work with multi-disciplinary team of architects, UX designer & developer.
+                                </p>
+                                <p x-text="j.duties">Write performant and maintainable code with Vue.Js.</p>
+                            </div>
+                        </div>
+                    </div>
+                </template>
             </div>
-          </div>
-        </template>
-      </div>
-    </div>
-    <div
-      id="experience"
-      class="flex flex-col justify-start gap-[0.625rem] px-4 py-8 md:px-8"
-    >
-      <h2 class="flex flex-row items-center gap-4 py-4">
-        <span
-          class="order-0 flex items-center text-center font-mono text-xl text-teal-400"
-          >04</span
-        >
-        <span
-          class="order-1 flex items-center text-center font-mono text-xl text-slate-100"
-        >
-          Experience</span
-        >
-        <span
-          class="flex-grow-1 order-2 flex w-full border border-dashed border-teal-500"
-        ></span>
-      </h2>
-      <div class="flex flex-col">
-        <template x-data="experience()" x-for="j in jobs">
-          <div class="flex flex-row gap-8">
-            <div class="flex w-[1.5625rem] flex-col items-center">
-              <svg
-                width="25"
-                height="25"
-                viewBox="0 0 25 25"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="4"
-                  y="12.3333"
-                  width="11.7851"
-                  height="11.7851"
-                  transform="rotate(-45 4 12.3333)"
-                  fill="#8892C0"
-                />
-                <rect
-                  x="1.41421"
-                  y="12.5"
-                  width="15.6777"
-                  height="15.6777"
-                  transform="rotate(-45 1.41421 12.5)"
-                  stroke="#64FFDA"
-                  stroke-width="2"
-                />
-              </svg>
-              <div
-                class="box-border h-full w-[0.0625rem] border-[0.0625rem] border-l border-dashed border-teal-500"
-              ></div>
-            </div>
-            <div class="flex flex-col gap-[1.125rem] pb-8">
-              <div class="flex flex-col gap-1">
-                <h3 class="font-mono text-lg text-slate-200" x-text="j.title">
-                  Acme - Front-End Developer
+        </div>
+        <div id="contact" class="space-y-8 border-t border-teal-400 px-4 py-16 md:px-8">
+            <div class="flex flex-col items-center gap-2 text-center font-mono text-slate-300">
+                <h3 class="font-serif text-4xl md:text-6xl">
+                    Let's work <a href="https://www.linkedin.com/in/zackary-edstrom/" class="text-teal-400">together!</a>
                 </h3>
-                <p class="text-sm text-slate-400" x-text="j.date">
-                  07/2010 - 02/2018
-                </p>
-              </div>
-              <div
-                class="flex flex-col gap-2 font-mono text-base text-slate-300"
-              >
-                <p x-text="j.description">
-                  Communicate and work with multi-disciplinary team of
-                  architects, UX designer & developer.
-                </p>
-                <p x-text="j.duties">
-                  Write performant and maintainable code with Vue.Js.
-                </p>
-              </div>
+                <a href="mailto:edstrom.zackary@gmail.com"><span class="text-xl underline md:text-2xl">edstrom.zackary@gmail.com</span></a>
+                <span class="text-lg md:text-2xl">Based in Salt Lake City, UT</span>
             </div>
-          </div>
-        </template>
-      </div>
-    </div>
-  </body>
+            <div class="flex flex-row items-center justify-center gap-8 md:gap-6">
+                <a href="https://github.com/daggerman77">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M24 0C10.7448 0 0 11.0158 0 24.6087C0 35.4796 6.876 44.7045 16.4136 47.9572C17.6136 48.1832 18.0504 47.4241 18.0504 46.7706C18.0504 46.1884 18.0312 44.6382 18.0192 42.5868C11.3424 44.0731 9.9336 39.2875 9.9336 39.2875C8.844 36.4426 7.2696 35.686 7.2696 35.686C5.0904 34.1628 7.4352 34.1923 7.4352 34.1923C9.8424 34.3643 11.1096 36.7276 11.1096 36.7276C13.2504 40.4864 16.728 39.4005 18.0936 38.7716C18.3144 37.1821 18.9336 36.0987 19.62 35.4845C14.292 34.863 8.688 32.7502 8.688 23.3214C8.688 20.6363 9.624 18.4375 11.1576 16.7178C10.9104 16.0963 10.0872 13.5929 11.3928 10.2076C11.3928 10.2076 13.4088 9.54427 17.9928 12.7281C19.9506 12.1816 21.9707 11.9032 24 11.9002C26.04 11.9101 28.092 12.1828 30.0096 12.7281C34.5912 9.54427 36.6024 10.2051 36.6024 10.2051C37.9128 13.5929 37.0872 16.0963 36.8424 16.7178C38.3784 18.4375 39.3096 20.6363 39.3096 23.3214C39.3096 32.7748 33.696 34.8556 28.3512 35.4649C29.2128 36.224 29.9784 37.725 29.9784 40.022C29.9784 43.3091 29.9496 45.9648 29.9496 46.7706C29.9496 47.429 30.3816 48.1955 31.6008 47.9547C36.3799 46.3139 40.5344 43.1772 43.4772 38.9879C46.4199 34.7986 48.002 29.7686 48 24.6087C48 11.0158 37.2528 0 24 0Z"
+                            fill="#CBD5E1"
+                        />
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/zackary-edstrom/">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1481_512)">
+                            <path
+                                d="M24 0C10.7451 0 0 10.7451 0 24C0 37.2548 10.7451 47.9999 24 47.9999C37.2548 47.9999 48 37.2548 48 24C47.9999 10.7451 37.2547 0 24 0ZM17.5967 35.6028H12.3273V18.5788H17.5967V35.6028ZM14.9369 16.3494C13.216 16.3494 11.8208 14.9429 11.8208 13.2081C11.8208 11.4732 13.2161 10.0668 14.9369 10.0668C16.6576 10.0668 18.0528 11.4732 18.0528 13.2081C18.0529 14.943 16.6577 16.3494 14.9369 16.3494ZM37.3439 35.6028H32.1V26.6666C32.1 24.2157 31.169 22.8475 29.231 22.8475C27.1218 22.8475 26.0199 24.2725 26.0199 26.6666V35.6028H20.9659V18.5788H26.0199V20.8716C26.0199 20.8716 27.5402 18.0595 31.15 18.0595C34.7599 18.0595 37.344 20.2637 37.344 24.8235L37.3439 35.6028Z"
+                                fill="#CBD5E1"
+                            />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_1481_512">
+                                <rect width="48" height="48" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </a>
+                <a href="https://twitter.com/ZJEdstrom">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M15.838 41.8787C32.4414 41.8787 41.523 28.1221 41.523 16.1937C41.523 15.8021 41.523 15.4127 41.4966 15.0277C43.2636 13.7485 44.7886 12.1647 46 10.3505C44.3523 11.0809 42.6044 11.56 40.8146 11.7717C42.6992 10.6433 44.1097 8.86851 44.7834 6.77774C43.0117 7.82909 41.0736 8.57014 39.0524 8.96894C37.6915 7.52082 35.8911 6.56178 33.93 6.24029C31.9689 5.91881 29.9565 6.25282 28.2045 7.19061C26.4524 8.12841 25.0584 9.61766 24.2382 11.4278C23.4181 13.2379 23.2176 15.2679 23.6678 17.2035C20.0787 17.0237 16.5675 16.0911 13.3622 14.4662C10.1569 12.8414 7.32912 10.5607 5.0624 7.77214C3.9081 9.75919 3.5545 12.1115 4.07358 14.3501C4.59266 16.5887 5.94541 18.5453 7.8564 19.8215C6.42037 19.78 5.01539 19.3936 3.76 18.6951V18.8095C3.76086 20.8936 4.48247 22.9132 5.80247 24.5259C7.12248 26.1386 8.95963 27.2452 11.0024 27.6579C9.67318 28.0203 8.27857 28.073 6.9258 27.8119C7.50255 29.606 8.62569 31.1749 10.1381 32.2991C11.6505 33.4233 13.4765 34.0467 15.3606 34.0819C13.4887 35.5528 11.3451 36.6402 9.0526 37.2819C6.76007 37.9237 4.36351 38.1072 2 37.8219C6.12853 40.4715 10.9324 41.8767 15.838 41.8699"
+                            fill="#CBD5E1"
+                        />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </body>
 </html>
